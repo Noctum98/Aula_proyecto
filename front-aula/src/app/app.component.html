@@ -1,0 +1,74 @@
+<div class="container">
+  <br>
+  <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+    <a class="navbar-brand" href="#" [routerLink]="['/index']" >
+      <img src="assets/icono.jpg" width="30" height="30" class="d-inline-block align-top" alt="" class="icon">
+      Aula Virtual
+    </a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="nav navbar-nav mr-auto" >
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li class="nav-item">
+          <a class="nav-link" [routerLink]="['/login']" *ngIf="!user && !token">Login</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" [routerLink]="['/register']" *ngIf="!user && !token">Registrarse</a>
+        </li>
+        <li class="nav-item" *ngIf="user">
+          <a href="" class="nav-link" [routerLink]="['/create-class']" >Crear Clase</a>
+        </li>
+        <li class="nav-item" *ngIf="user">
+          <a type="button" data-toggle="modal" data-target="#exampleModal" class="nav-link" (click)="status = 'normal'">Unirse a Clase</a>
+        </li>
+        <!--Modal-->
+        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel" *ngIf="status == 'normal'">Ingrese el código de la clase</h5>
+                <span *ngIf="status == 'success'">Te has unido a la clase</span>
+                <span *ngIf="status == 'failed'">La clase no existe, verifica el código</span>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body" *ngIf="status == 'normal'">
+                <form action="" #memberForm="ngForm" (ngSubmit)="onSubmit(memberForm)" autocomplete="off">
+                  <input type="text" name="code" class="form-control" [(ngModel)]="code" required>
+                  <div class="modal-footer">
+                    <input type="submit" value="Unirse a la clase" class="btn btn-primary" [disabled]="!memberForm.form.valid">
+                  </div> 
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!--Fin de modal-->
+        <li class="nav-item dropdown" *ngIf="user">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <div class="image-profile">
+              <img *ngIf="user.image" src="{{url + 'user/image/' + user.image}}" >
+              <img *ngIf="!user.image" src="assets/profile-default.png" >
+            </div>
+            {{user.name + ' ' + user.surname}}
+          </a>
+          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <a class="dropdown-item" href="#">Editar mis datos</a>
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-item" href="" (click)="logout()">Cerrar Sesión</a>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </nav>
+  <router-outlet></router-outlet> 
+  <br><br><br><br><br><br>
+  <footer>
+    Desarrollado por Ezequiel Lucero
+  </footer>
+</div>
+

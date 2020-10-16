@@ -1,0 +1,22 @@
+a div{
+    color: #333;
+}
+a h5{
+    color: black;
+}
+a:hover{
+    text-decoration: none;
+}
+.ans{
+    padding: 10px;
+    transition: 500ms;
+    border-radius: 10px;
+}
+.ans:hover{
+    background-color: gainsboro;
+    cursor: pointer;
+}
+span{
+    font-size: 14px;
+    color: rgb(184, 184, 184);
+}

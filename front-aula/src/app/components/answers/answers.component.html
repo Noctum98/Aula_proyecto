@@ -1,0 +1,15 @@
+<div class="col-md-12 mt-3">
+    <h1>Respuestas</h1>
+    <hr>
+    <div *ngIf="message">
+        Aún no hay respuestas para esta tarea.
+    </div>
+    <div *ngFor="let answer of answers" class="row link-a mt-3 ans">
+        <a href="" [routerLink]="['/answer', answer.id]">
+        <h5>{{ answer.name + ' ' + answer.surname }}</h5>
+        <span>
+            Haz click para ver el contenido de la respuesta
+        </span>
+        </a>
+    </div>
+</div>

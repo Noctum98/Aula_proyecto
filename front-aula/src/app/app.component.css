@@ -1,0 +1,30 @@
+footer{
+    bottom: 0;
+    position: fixed;
+    width: 60%;
+    align-self: flex-end;
+    height: 30px;
+    background-color:#007bff60;
+    line-height: 30px;
+    color: #333;
+    text-align: center;
+}
+.image-profile{
+    float: left;
+    width: 25px;
+    height: 25px;
+    margin-right: 4px;
+    border-radius: 900px;
+    overflow: hidden;
+}
+.image-profile img{
+    width: 100%;
+}
+img{
+    height: 100%;
+    margin-bottom: 10px;
+    margin-right: 5px;
+}
+.icon{
+    margin-top:5px;
+}

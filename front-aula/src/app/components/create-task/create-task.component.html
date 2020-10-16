@@ -1,0 +1,34 @@
+<div class="col-md-12 mt-3">
+    <h1>Crear tarea para "{{classroom.name}}"</h1>
+    <p>Crea tareas para tus alumnos o miembros de la clase</p>
+    <hr>
+
+    <form action="" class="col-md-6" #taskForm="ngForm" (ngSubmit)="onSubmit(taskForm)">
+        <div class="form-group">
+            <label for="title">Título de la tarea</label>
+            <input type="text" name="title" class="form-control" #title="ngModel" [(ngModel)]="task.title" required>
+
+            <small class="invalid-feedback d-block" *ngIf="title.touched && !title.valid">
+                *La tarea debe tener un título
+            </small>
+        </div>
+
+        <div class="form-group">
+            <label for="content">Contenido de la tarea</label>
+            <textarea [froalaEditor]="options" name="content" #content="ngModel" [(ngModel)]="task.content" required ></textarea>
+            <small class="invalid-feedback d-block" *ngIf="content.touched && !content.valid">
+                *La tarea debe tener un contenido
+            </small>
+        </div>
+        <div class="form-group">
+            <label for="file">Archivo</label>
+            <angular-file-uploader 
+                [config]="afuConfig"
+                [resetUpload]=resetVar
+                (ApiResponse)="upload($event)">
+            </angular-file-uploader>
+        </div>
+
+        <input type="submit" value="Subir tarea" [disabled]="!taskForm.form.valid" class="btn btn-success">
+    </form>
+</div>

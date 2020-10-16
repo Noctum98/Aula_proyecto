@@ -1,0 +1,36 @@
+<div class="col-md-12">
+    <br>
+    <h1>Crear una clase</h1>
+    <p>Crear tu clase y añade todos los miembros que quieras y, a enseñar!</p>
+    <hr>
+    <div *ngIf="status == 'failed'" class="alert alert-danger">
+        Ha ocurrido un error al intentar crear la clase, intenta mas tarde
+    </div>
+    <form action="" #classroomForm="ngForm" class="col-md-5" (ngSubmit)="onSubmit(classroomForm)">
+        <div class="form-group">
+            <label for="name">Nombre de la clase</label>
+            <input type="text" name="name" class="form-control" #name="ngModel" [(ngModel)]="classroom.name" required>
+
+            <small class="invalid-feedback d-block" *ngIf="name.touched && !name.valid">
+                *La clase debe tener un nombre
+            </small>
+        </div>
+        <div class="form-group">
+            <label for="name">Descripción de la clase</label>
+            <textarea name="description" class="form-control" #description="ngModel" [(ngModel)]="classroom.description" required></textarea>
+
+            <small class="invalid-feedback d-block" *ngIf="description.touched && !description.valid">
+                *La clase debe tener una descripción
+            </small>
+        </div>
+        <div class="form-group">
+            <label for="file">Archivo</label>
+            <angular-file-uploader 
+                [config]="afuConfig"
+                [resetUpload]=resetVar
+                (ApiResponse)="upload($event)">
+            </angular-file-uploader>
+        </div>
+        <input type="submit" value="Crear clase" [disabled]="!classroomForm.form.valid" class="btn btn-success">
+    </form>
+</div>

@@ -1,0 +1,25 @@
+
+<div *ngIf="status == 'success'" class="alert alert-success">
+    La respuesta ha sido enviada con éxito
+</div>
+
+<button class="btn btn-primary" (click)="changeControl()" *ngIf="status != 'success'">
+    Responder tarea
+</button>
+<div *ngIf="control && status != 'success'" class="mt-3">
+    <form action="" class="col-md-12" #answerForm="ngForm" (ngSubmit)="onSubmit(answerForm)">
+        <div class="form-group">
+            <label for="content">Contenido de la respuesta</label>
+            <textarea name="content" class="form-control" #content="ngModel" [(ngModel)]="answer.content" [froalaEditor]="options"></textarea>
+        </div>
+        <div class="form-group">
+            <label for="file">Archivo</label>
+            <angular-file-uploader 
+                [config]="afuConfig"
+                [resetUpload]=resetVar
+                (ApiResponse)="upload($event)">
+            </angular-file-uploader>
+        </div>
+        <input type="submit" value="Subir Tarea" class="btn btn-success">
+    </form>
+</div>

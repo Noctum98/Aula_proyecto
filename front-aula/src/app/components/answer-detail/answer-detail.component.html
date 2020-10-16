@@ -1,0 +1,15 @@
+<div class="col-md-12 mt-3" *ngIf="answer">
+    <h1>Respuesta de {{ answer.name + ' ' + answer.surname }}</h1>
+    <p [innerHTML]="answer.content"></p>
+    <a href="{{ url + 'answer/file/' + answer.file }}" *ngIf="answer.file" download="{{answer.file}}">
+        Descargar archivo: {{ answer.file.substr(10) }}
+    </a>
+    <span *ngIf="!answer.file" class="d-block invalid-feedback">
+        No ha subido ningun archivo
+    </span>
+</div>
+<div class="d-flex justify-content-center mt-5" *ngIf="!answer">
+    <div class="spinner-border" role="status">
+      <span class="sr-only">Loading...</span>
+    </div>
+</div>

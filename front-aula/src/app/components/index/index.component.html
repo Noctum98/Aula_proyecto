@@ -1,0 +1,49 @@
+<div class="col-md-12 mt-3">
+    <h1>Mis clases</h1>
+    <hr>
+    <div *ngIf="classrooms && classrooms != 'empty'" class="row">
+        <div *ngFor="let classroom of classrooms" class="d-block">
+            <div class="card mr-3 mb-4" style="width: 22rem;">
+              <img class="card-img-top" src="assets/classroom-default.jpg" alt="Card image cap" *ngIf="!classroom.image">
+              <img class="card-img-top" src="{{url + 'classroom/image/' + classroom.image}}" alt="Card image cap" *ngIf="classroom.image">
+                <div class="card-body">
+                  <h5 class="card-title">{{ classroom.name }}</h5>
+                  <p class="card-text">{{ classroom.description.substr(0,74) }} <span *ngIf="classroom.description.length > 74">...</span></p>
+                  <a href="#" class="btn btn-primary mr-2" [routerLink]="['/detail-class', classroom.id]">Ir a la clase</a>
+                </div>
+              </div>
+        </div>
+    </div>
+
+    <div *ngIf="classrooms == 'empty'">
+        Aun no has creado ninguna clase.
+    </div>
+    <br>
+    <h1>Clases de otros</h1>
+    <hr>
+   
+    <div *ngIf="class_members && class_members != 'empty'" class="row">
+        <div *ngFor="let classroom of class_members" >
+            <div class="card mr-3 mb-4" style="width: 22rem;">
+                <img class="card-img-top" src="assets/classroom-default.jpg" alt="Card image cap" *ngIf="!classroom.image">
+                <img class="card-img-top" src="{{url + 'classroom/image/' + classroom.image}}" alt="Card image cap" *ngIf="classroom.image">
+                <div class="card-body">
+                  <h5 class="card-title">{{ classroom.name }}</h5>
+                  <p class="card-text">{{ classroom.description.substr(0,78) }} <span *ngIf="classroom.description.length > 78">...</span></p>
+                  <a href="#" class="btn btn-primary" [routerLink]="['/detail-class', classroom.id]">Ir a la clase</a>
+                </div>
+              </div>
+        </div>
+    </div>
+
+    <div *ngIf="class_members == 'empty'">
+        No te has unido a ninguna clase.
+    </div>
+
+    <!--Loading-->
+    <div class="d-flex justify-content-center mt-5" *ngIf="!class_members || !classrooms">
+        <div class="spinner-border" role="status">
+          <span class="sr-only">Loading...</span>
+        </div>
+    </div>
+</div>

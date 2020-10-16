@@ -1,0 +1,26 @@
+<div class="col-md-12">
+    <br>
+    <h1>Iniciar Sesión</h1>
+    <p>Inicia sesión para poder usar Aula Virtual</p>
+    <hr>
+    <div class="alert alert-danger" *ngIf="status == 'failed'">
+        Los datos ingresados son incorrectos, comprueba bien tus credenciales
+    </div>
+    <form class="col-md-4" #loginForm="ngForm" (ngSubmit)="onSubmit(loginForm)">
+        <div class="form-group">
+            <label for="email">Correo electronico</label>
+            <input type="email" name="email" class="form-control" #name="ngModel" [(ngModel)]="user.email" email required>
+            <small class="invalid-feedback d-block" *ngIf="name.touched && !name.valid">
+                *El correo electronico no es válido
+            </small>
+        </div>
+        <div class="form-group">
+            <label for="password">Contraseña</label>
+            <input type="password" name="password" class="form-control" #password="ngModel" [(ngModel)]="user.password" required>
+            <small class="invalid-feedback d-block" *ngIf="password.touched && !password.valid">
+                *La contraseña debe introducirse
+            </small>
+        </div>  
+        <input type="submit" value="Iniciar Sesión" [disabled]="!loginForm.form.valid" class="btn btn-primary">
+    </form>
+</div>
