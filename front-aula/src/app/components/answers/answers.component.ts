@@ -42,7 +42,7 @@ export class AnswersComponent implements OnInit {
         }
       },
       error => {
-        console.log(<any>error);
+        this.router.navigate(['/error']);
       }
     );
   }
